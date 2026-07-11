@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon espace MTN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="entete">
+    <div class="logo-mtn">MTN</div>
+    <div class="infos-utilisateur">
+      <span id="nomUtilisateur">Chargement...</span>
+      <a href="profil.html" class="bouton-secondaire lien-nav">Mon profil</a>
+      <a href="agent.html" id="lienEspaceAgent" class="bouton-secondaire lien-nav cache">Espace Agent</a>
+      <button id="btnDeconnexion" class="bouton-secondaire">Déconnexion</button>
+    </div>
+  </header>
+
+  <main class="conteneur-dashboard">
+
+    <section class="carte carte-solde">
+      <div>
+        <p class="etiquette">Solde disponible</p>
+        <p class="valeur-solde" id="soldeUtilisateur">0 FCFA</p>
+      </div>
+      <div class="action-recharge">
+        <input type="number" id="montantRecharge" placeholder="Montant (FCFA)" min="1" />
+        <button id="btnRecharge" class="bouton-principal">Recharger</button>
+      </div>
+    </section>
+
+    <section class="carte">
+      <h2>Forfait actif</h2>
+      <div id="forfaitActifConteneur">
+        <p class="texte-vide">Aucun forfait actif pour le moment.</p>
+      </div>
+      <button id="btnSimulerUsage" class="bouton-secondaire cache">Simuler une utilisation</button>
+    </section>
+
+    <section class="carte">
+      <h2>Forfaits disponibles</h2>
+      <div id="listeForfaits" class="grille-forfaits"></div>
+    </section>
+
+    <section class="carte">
+      <h2>Historique des transactions</h2>
+      <div id="listeHistorique" class="liste-historique"></div>
+    </section>
+
+  </main>
+
+  <p class="message-erreur conteneur-message" id="messageGlobal"></p>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

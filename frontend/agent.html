@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Espace Agent - MTN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="entete">
+    <div class="logo-mtn">MTN</div>
+    <div class="infos-utilisateur">
+      <span>Espace Agent</span>
+      <a href="dashboard.html" class="bouton-secondaire lien-nav">← Retour</a>
+      <button id="btnDeconnexion" class="bouton-secondaire">Déconnexion</button>
+    </div>
+  </header>
+
+  <main class="conteneur-dashboard">
+
+    <section class="carte">
+      <h2>Liste des clients</h2>
+      <input type="text" id="rechercheClient" class="champ-recherche" placeholder="Rechercher un client par nom ou email..." />
+      <div id="listeClients" class="liste-clients"></div>
+    </section>
+
+    <section class="carte cache" id="carteDetailClient">
+      <h2 id="titreDetailClient">Détail du client</h2>
+      <div id="detailClientConteneur"></div>
+
+      <div class="action-recharge">
+        <input type="number" id="montantRechargeAgent" placeholder="Montant (FCFA)" min="1" />
+        <button id="btnRechargeAgent" class="bouton-principal">Recharger ce client</button>
+      </div>
+
+      <div class="actions-compte-agent">
+        <button id="btnBloquerClient" class="bouton-secondaire bouton-avertissement">Bloquer ce compte</button>
+        <button id="btnSupprimerClient" class="bouton-secondaire bouton-danger">Supprimer ce compte</button>
+      </div>
+
+      <h3>Attribuer un forfait</h3>
+      <div id="listeForfaitsAgent" class="grille-forfaits"></div>
+
+      <h3>Historique du client</h3>
+      <div id="listeHistoriqueClient" class="liste-historique"></div>
+    </section>
+
+  </main>
+
+  <p class="message-erreur conteneur-message" id="messageGlobal"></p>
+
+  <script src="js/agent.js"></script>
+</body>
+</html>

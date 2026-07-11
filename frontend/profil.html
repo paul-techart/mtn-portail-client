@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon profil - MTN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="entete">
+    <div class="logo-mtn">MTN</div>
+    <div class="infos-utilisateur">
+      <a href="dashboard.html" class="bouton-secondaire lien-nav">← Retour</a>
+      <button id="btnDeconnexion" class="bouton-secondaire">Déconnexion</button>
+    </div>
+  </header>
+
+  <main class="conteneur-dashboard conteneur-etroit">
+
+    <section class="carte">
+      <h2>Informations du compte</h2>
+      <p class="info-lecture-seule">Email : <strong id="emailProfil">...</strong></p>
+      <p class="info-lecture-seule">Type de compte : <strong id="roleProfil">...</strong></p>
+
+      <form id="formNom" class="formulaire">
+        <label for="nomProfil">Nom complet</label>
+        <input type="text" id="nomProfil" required />
+        <button type="submit" class="bouton-principal">Enregistrer le nom</button>
+      </form>
+    </section>
+
+    <section class="carte">
+      <h2>Changer de mot de passe</h2>
+      <form id="formMotDePasse" class="formulaire">
+        <label for="ancienMotDePasse">Mot de passe actuel</label>
+        <input type="password" id="ancienMotDePasse" required placeholder="••••••••" />
+
+        <label for="nouveauMotDePasse">Nouveau mot de passe</label>
+        <input type="password" id="nouveauMotDePasse" required placeholder="••••••••" />
+
+        <button type="submit" class="bouton-principal">Changer le mot de passe</button>
+      </form>
+    </section>
+
+  </main>
+
+  <p class="message-erreur conteneur-message" id="messageGlobal"></p>
+
+  <script src="js/profil.js"></script>
+</body>
+</html>

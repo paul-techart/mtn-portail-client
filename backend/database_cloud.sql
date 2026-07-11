@@ -1,0 +1,54 @@
+-- Version du script SQL à utiliser pour importer les tables dans une base
+-- déjà créée sur un hébergeur cloud (Aiven, etc.) — pas de CREATE DATABASE ici,
+-- car la base existe déjà et porte souvent un nom imposé (ex: "defaultdb").
+
+CREATE TABLE IF NOT EXISTS utilisateurs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  mot_de_passe VARCHAR(255) NOT NULL,
+  role VARCHAR(20) NOT NULL DEFAULT 'client',
+  solde INT NOT NULL DEFAULT 0,
+  bloque TINYINT(1) NOT NULL DEFAULT 0,
+
+  forfait_nom VARCHAR(255) NULL,
+  forfait_data_total INT NULL,
+  forfait_data_restant INT NULL,
+  forfait_appels_total INT NULL,
+  forfait_appels_restant INT NULL,
+  forfait_sms_total INT NULL,
+  forfait_sms_restant INT NULL,
+  forfait_date_achat DATETIME NULL,
+  forfait_date_expiration DATETIME NULL,
+
+  date_creation DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS historique (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  utilisateur_id INT NOT NULL,
+  type VARCHAR(50) NOT NULL,
+  description TEXT NOT NULL,
+  montant INT NOT NULL DEFAULT 0,
+  date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS forfaits (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(255) NOT NULL,
+  prix INT NOT NULL,
+  data_mo INT NOT NULL,
+  appels_min INT NOT NULL,
+  sms INT NOT NULL,
+  validite_jours INT NOT NULL
+);
+
+INSERT INTO forfaits (nom, prix, data_mo, appels_min, sms, validite_jours)
+SELECT * FROM (SELECT
+  'MTN Night Data' AS nom, 500 AS prix, 2000 AS data_mo, 0 AS appels_min, 0 AS sms, 1 AS validite_jours
+  UNION ALL SELECT 'MTN Family Mix 1000F', 1000, 500, 60, 50, 7
+  UNION ALL SELECT 'MTN Family Mix 2000F', 2000, 1200, 150, 100, 15
+  UNION ALL SELECT 'MTN Family Mix 5000F', 5000, 4000, 400, 300, 30
+) AS donnees_initiales
+WHERE NOT EXISTS (SELECT 1 FROM forfaits);

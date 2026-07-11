@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portail Client MTN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="page-centree">
+    <div class="carte-auth">
+      <div class="logo-mtn">MTN</div>
+      <h1>Portail Client</h1>
+
+      <div class="onglets">
+        <button class="onglet actif" data-onglet="connexion">Connexion</button>
+        <button class="onglet" data-onglet="inscription">Inscription</button>
+      </div>
+
+      <form id="formConnexion" class="formulaire">
+        <label for="emailConnexion">Email</label>
+        <input type="email" id="emailConnexion" required placeholder="exemple@mail.com" />
+
+        <label for="motDePasseConnexion">Mot de passe</label>
+        <input type="password" id="motDePasseConnexion" required placeholder="••••••••" />
+
+        <button type="submit" class="bouton-principal">Se connecter</button>
+        <p class="message-erreur" id="erreurConnexion"></p>
+      </form>
+
+      <form id="formInscription" class="formulaire cache">
+        <label for="nomInscription">Nom complet</label>
+        <input type="text" id="nomInscription" required placeholder="Jean Dupont" />
+
+        <label for="emailInscription">Email</label>
+        <input type="email" id="emailInscription" required placeholder="exemple@mail.com" />
+
+        <label for="motDePasseInscription">Mot de passe</label>
+        <input type="password" id="motDePasseInscription" required placeholder="••••••••" />
+
+        <p class="lien-toggle" id="toggleCodeAgent">Vous êtes un agent MTN ?</p>
+        <div id="blocCodeAgent" class="cache">
+          <label for="codeAgentInscription">Code agent</label>
+          <input type="text" id="codeAgentInscription" placeholder="Code fourni par MTN" />
+        </div>
+
+        <button type="submit" class="bouton-principal">Créer mon compte</button>
+        <p class="message-erreur" id="erreurInscription"></p>
+        <p class="message-succes" id="succesInscription"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

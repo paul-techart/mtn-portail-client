@@ -1,0 +1,31 @@
+const fs = require("fs");
+const path = require("path");
+const mysql = require("mysql2/promise");
+
+const CONFIG_AIVEN = {
+  host: "mtn-portail-db-nkotopaularthur3-c9f7.f.aivencloud.com",
+  port: 22617,
+  user: "avnadmin",
+  password: "AVNS_jGjD8RIsoisE5dKFtI3",
+  database: "defaultdb",
+  ssl: { rejectUnauthorized: false },
+  multipleStatements: true,
+};
+
+async function importer() {
+  console.log("Connexion à la base Aiven en cours...");
+  const connexion = await mysql.createConnection(CONFIG_AIVEN);
+
+  console.log("Connexion réussie. Lecture du fichier SQL...");
+  const contenuSQL = fs.readFileSync(path.join(__dirname, "database_cloud.sql"), "utf8");
+
+  console.log("Exécution du script SQL...");
+  await connexion.query(contenuSQL);
+
+  console.log("✅ Import terminé avec succès !");
+  await connexion.end();
+}
+
+importer().catch((erreur) => {
+  console.error("❌ Erreur lors de l'import :", erreur.message);
+});
