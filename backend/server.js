@@ -18,6 +18,15 @@ app.use("/api/client", clientRoutes);
 app.use("/api/admin", adminRoutes);
 
 // Servir le frontend (HTML/CSS/JS) directement depuis le backend
+app.get("/api/test-db", async (req, res) => {
+  try {
+    const pool = require("./config/db");
+    const [lignes] = await pool.query("SELECT 1+1 AS resultat");
+    res.json({ succes: true, message: "Connexion à la base réussie !", resultat: lignes });
+  } catch (erreur) {
+    res.json({ succes: false, message: "Échec de connexion", erreur: erreur.message, code: erreur.code });
+  }
+});
 app.use(express.static(path.join(__dirname, "..", "frontend")));
 
 app.listen(PORT, () => {
